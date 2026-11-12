@@ -129,8 +129,8 @@ a:hover { color: var(--color-ink); }
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: flex-start;
+  gap: 44px;
 }
 
 .brand {
@@ -176,6 +176,7 @@ a:hover { color: var(--color-ink); }
 
 .nav-toggle {
   display: none;
+  margin-left: auto;
 }
 
 .nav-toggle summary {
