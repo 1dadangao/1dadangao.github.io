@@ -49,7 +49,7 @@ alwaysApply: true
 
 - 间距梯度 4 → 8 → 12 → 16 → 24 → 32 → 48 → 64 → 80 → 96。
 - 页面宽 1120，正文宽 680，窄栏 760；左右留白 48 / 32 / 24。
-- **圆角统一为 0**，不使用阴影。立体感只来自 1px 描边。
+- **圆角统一为 0**，不使用阴影。立体感只来自 1px 描边。唯一例外：页头「首页」品牌药丸（见 2.4）。
 
 ### 2.4 组件规则
 
@@ -62,6 +62,7 @@ alwaysApply: true
 | 链接 | 纯黑，`text-underline-offset: 3px` |
 | 焦点 | `outline: 2px solid #000; outline-offset: 3px` |
 | 选中文本 | 黑底白字 |
+| 品牌（首页） | 黑色椭圆药丸（`border-radius: 999px`）+ 白字，高 40px，hover 背景变 `#222` |
 | 触摸目标 | 所有可点元素最小高度 44px |
 
 ### 2.5 动效规则
@@ -134,6 +135,7 @@ js/main.js                 首屏黑圆 + 移动端菜单
 .nojekyll                  GitHub Pages 直出，不走 Jekyll
 ```
 
+- 页头左侧是黑色药丸 **「首页」**（链接回 `index.html`），右侧是全站导航。
 - 全站导航固定三项：**项目 / 关于 / 联系**，当前页加 `aria-current="page"`。
 - 每个页面都要有 `skip-link`、`<main id="main" tabindex="-1">` 和同一个 header / footer。
 - 页脚固定为：姓名 · 邮箱 · © 2026。
