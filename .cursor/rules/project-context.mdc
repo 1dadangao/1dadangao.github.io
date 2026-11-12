@@ -58,7 +58,7 @@ alwaysApply: true
 | 主按钮 | 黑底白字；hover 不变色（已经是反色） |
 | 次按钮 | 白底 + 1px 黑框；hover 反色为黑底白字 |
 | 文字按钮 | 纯文本 + 下划线（hover 时出现） |
-| 卡片 | 项目卡与摘要卡统一：白底 + 1px 纯黑描边 + 8px 圆角；项目卡 hover 底色变 `#FAFAFA`。**不位移、不加阴影、不放大** |
+| 卡片 | 项目卡与摘要卡统一：白底 + 1px 纯黑描边 + 8px 圆角。卡片**不可点击、不含链接**，因此不做 hover 反馈。**不位移、不加阴影、不放大** |
 | 链接 | 纯黑，`text-underline-offset: 3px` |
 | 焦点 | `outline: 2px solid #000; outline-offset: 3px` |
 | 选中文本 | 黑底白字 |
@@ -102,7 +102,7 @@ alwaysApply: true
 | 页面标题后缀 | `｜黄胜坚` |
 
 - 工作时间出现在：首页「简短自我介绍」、关于页简介、关于页时间轴。
-- 草稿标注必须同时出现在：项目列表页页头、两个项目详情页、关于页时间轴。
+- 草稿标注必须同时出现在：项目列表页页头、关于页时间轴。（两个项目详情页已于 2026-11-12 删除）
 - 首页项目卡与精选内容区的提示已于 2026-11-12 按本人要求删除，不要再加回去；项目详情页与关于页的标注仍然必须保留，直到本人确认真实材料。
 - **公司名称留空**。目前页面没有公司名，不要补。
 
@@ -125,19 +125,18 @@ alwaysApply: true
 ## 6. 页面结构
 
 ```
-index.html                 首页：问候区 / 简介 / 精选项目 / 精选内容 / 联系
-about.html                 关于：简介 / 经历时间线 / 能力与工具 / 工作方式
-contact.html               联系：只有邮箱一项
-projects.html              项目列表：多模态训练 / 文本模型训练
-projects/multimodal.html   项目详情：图文理解模型训练（示例稿）
-projects/text.html         项目详情：文本指令遵循训练（示例稿）
-css/styles.css             全部样式
-js/main.js                 首屏黑圆 + 移动端菜单
-.nojekyll                  GitHub Pages 直出，不走 Jekyll
+index.html        首页：问候区 / 简介 / 精选项目 / 精选内容 / 结语 + 邮箱
+about.html        关于：简介 / 经历时间线 / 能力与工具 / 工作方式
+projects.html     项目列表：多模态训练 / 文本模型训练（卡片不可点击）
+css/styles.css    全部样式
+js/main.js        首屏黑圆 + 移动端菜单
+.nojekyll         GitHub Pages 直出，不走 Jekyll
+
+2026-11-12 按本人要求删除了 contact.html 与两个项目详情页（projects/multimodal.html、projects/text.html），连同「查看详情」入口。**不要重建这些页面**，除非本人明确要求；联系信息只保留首页结语下方的邮箱与页脚。
 ```
 
 - 页头左侧是黑色药丸 **「首页」**（链接回 `index.html`），右侧是全站导航。
-- 全站导航固定三项：**项目 / 关于 / 联系**，当前页加 `aria-current="page"`。
+- 全站导航固定两项：**项目 / 关于**，当前页加 `aria-current="page"`。
 - 每个页面都要有 `skip-link`、`<main id="main" tabindex="-1">` 和同一个 header / footer。
 - 页脚固定为：姓名 · 邮箱 · © 2026。
 
