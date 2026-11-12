@@ -35,16 +35,11 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero-stage" tabindex="0" aria-label="问候。悬停、聚焦或点击后切换为英文欢迎语。">
+    <section class="hero-stage" aria-label="问候。指针在首页问候区时，黑圆跟随移动，圆内显示英文欢迎语；指针离开后恢复白底。">
       <p class="visually-hidden" id="hero-live" aria-live="polite">你好，我是黄胜坚。</p>
-      <p class="hero-type" aria-hidden="true">
-        <span class="hero-zh">你好，我是黄胜坚。</span>
-        <span class="hero-en" lang="en">Hello, welcome.</span>
-      </p>
-      <div class="hero-circle" aria-hidden="true">
-        <p class="hero-type">
-          <span class="hero-zh">你好，我是黄胜坚。</span>
-        </p>
+      <p class="hero-type hero-type-base" aria-hidden="true">你好，我是黄胜坚。</p>
+      <div class="hero-invert" aria-hidden="true">
+        <p class="hero-type hero-type-invert" lang="en">Hello, welcome.</p>
       </div>
     </section>
 
