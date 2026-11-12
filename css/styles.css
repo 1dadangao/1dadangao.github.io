@@ -245,10 +245,7 @@ main { flex: 1; }
 .hero-stage {
   --stage-h: calc(100vh - var(--header-height));
   --circle-size: 440px;
-  --circle-r: calc(var(--circle-size) / 2);
   --type-left: 328px;
-  --spot-x: -9999px;
-  --spot-y: -9999px;
   position: relative;
   min-height: max(560px, var(--stage-h));
   overflow: hidden;
@@ -270,20 +267,29 @@ main { flex: 1; }
   letter-spacing: 0;
 }
 
-.hero-invert {
+.hero-circle {
   position: absolute;
-  inset: 0;
   z-index: 2;
+  top: 0;
+  left: 0;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
   background: #000;
-  color: #fff;
+  overflow: hidden;
   pointer-events: none;
   opacity: 0;
-  clip-path: circle(var(--circle-r) at var(--spot-x) var(--spot-y));
+  will-change: transform;
 }
 
-.hero-stage.has-pointer .hero-invert { opacity: 1; }
+.hero-stage.has-pointer .hero-circle { opacity: 1; }
 
-.hero-type-invert { color: #fff; }
+.hero-type-invert {
+  left: 0;
+  top: 0;
+  transform: none;
+  color: #fff;
+}
 
 /* —— 首屏以下 —— */
 .section { padding: 80px 0; }
@@ -768,7 +774,7 @@ h3 { font-size: var(--text-h3); font-weight: 600; line-height: 1.4; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-stage,
-  .hero-invert,
+  .hero-circle,
   .hero-type,
   .btn,
   .card-project {

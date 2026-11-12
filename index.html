@@ -8,7 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261112c">
+  <style>
+    /* Prevent mid-deploy cache mix: hide the invert layer until stylesheet + JS are ready. */
+    .hero-circle { position: absolute; overflow: hidden; opacity: 0; pointer-events: none; }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -38,7 +42,7 @@
     <section class="hero-stage" aria-label="问候。指针在首页问候区时，黑圆跟随移动，圆内显示英文欢迎语；指针离开后恢复白底。">
       <p class="visually-hidden" id="hero-live" aria-live="polite">你好，我是黄胜坚。</p>
       <p class="hero-type hero-type-base" aria-hidden="true">你好，我是黄胜坚。</p>
-      <div class="hero-invert" aria-hidden="true">
+      <div class="hero-circle" aria-hidden="true">
         <p class="hero-type hero-type-invert" lang="en">Hello, welcome.</p>
       </div>
     </section>
@@ -137,6 +141,6 @@
       <p><a href="index.html">黄胜坚</a> · <a href="mailto:3641605586@qq.com">3641605586@qq.com</a> · © 2026</p>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261112c"></script>
 </body>
 </html>
