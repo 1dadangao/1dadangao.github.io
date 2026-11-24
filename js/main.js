@@ -25,7 +25,7 @@
 
     /* 拖尾：在圆的后方叠几层模糊的黑色圆，按移动速度淡入，
        停手后自动消失，避免留下静止的光晕。 */
-    var TRAIL_COUNT = 6;
+    var TRAIL_COUNT = window.innerWidth < 768 ? 3 : 6;
     var trailLayer = null;
     var trails = [];
     var history = [];
@@ -56,6 +56,41 @@
       history.length = 0;
       speedSmooth = 0;
       for (var i = 0; i < trails.length; i++) trails[i].style.opacity = "0";
+      if (circle) {
+        circle.style.webkitMaskImage = "none";
+        circle.style.maskImage = "none";
+        lastMaskKey = "none";
+      }
+    }
+
+    var lastMaskKey = "";
+
+    /* 让圆的后半部分朝运动反方向渐隐，和后面的模糊拖尾连成一片。
+       方向取当前速度，强度随速度增长；静止时立刻恢复完整圆形。 */
+    function paintMask() {
+      if (!circle) return;
+      var strength = Math.min(1, speedSmooth / 16);
+      if (strength < 0.05) {
+        if (lastMaskKey !== "none") {
+          circle.style.webkitMaskImage = "none";
+          circle.style.maskImage = "none";
+          lastMaskKey = "none";
+        }
+        return;
+      }
+      var a = history[0] || pos;
+      var b = history[1] || a;
+      var vx = a.x - b.x;
+      var vy = a.y - b.y;
+      if (!vx && !vy) return;
+      var angle = Math.round(Math.atan2(vx, -vy) * 180 / Math.PI / 5) * 5;
+      var solid = Math.round((80 - strength * 8) / 5) * 5;
+      var key = angle + ":" + solid;
+      if (key === lastMaskKey) return;
+      lastMaskKey = key;
+      var g = "linear-gradient(" + angle + "deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) " + Math.round(solid * 0.55) + "%, #000 " + solid + "%, #000 100%)";
+      circle.style.webkitMaskImage = g;
+      circle.style.maskImage = g;
     }
 
     function paintTrail() {
@@ -71,8 +106,8 @@
         var el = trails[i];
         el.style.transform =
           "translate3d(" + (h.x - radius) + "px," + (h.y - radius) + "px,0)";
-        el.style.filter = "blur(" + (5 + i * 3) + "px)";
-        el.style.opacity = (0.13 * strength * (1 - i * 0.14)).toFixed(3);
+        el.style.filter = "blur(" + (8 + i * 4) + "px)";
+        el.style.opacity = (0.38 * strength * (1 - i * 0.17)).toFixed(3);
       }
     }
 
@@ -122,6 +157,7 @@
       }
       render();
       paintTrail();
+      paintMask();
       frameId = window.requestAnimationFrame(step);
     }
 
