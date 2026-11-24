@@ -25,7 +25,7 @@
 
     /* 拖尾：在圆的后方叠几层模糊的黑色圆，按移动速度淡入，
        停手后自动消失，避免留下静止的光晕。 */
-    var TRAIL_COUNT = 4;
+    var TRAIL_COUNT = 6;
     var trailLayer = null;
     var trails = [];
     var history = [];
@@ -72,7 +72,7 @@
         el.style.transform =
           "translate3d(" + (h.x - radius) + "px," + (h.y - radius) + "px,0)";
         el.style.filter = "blur(" + (5 + i * 3) + "px)";
-        el.style.opacity = (0.13 * strength * (1 - i * 0.16)).toFixed(3);
+        el.style.opacity = (0.13 * strength * (1 - i * 0.14)).toFixed(3);
       }
     }
 
@@ -112,7 +112,7 @@
       pos.x += (target.x - pos.x) * ease;
       pos.y += (target.y - pos.y) * ease;
       history.unshift({ x: pos.x, y: pos.y });
-      if (history.length > 6) history.pop();
+      if (history.length > TRAIL_COUNT + 3) history.pop();
       if (
         Math.abs(target.x - pos.x) < SETTLE &&
         Math.abs(target.y - pos.y) < SETTLE
