@@ -415,6 +415,36 @@ h3 { font-size: var(--text-h3); font-weight: 600; line-height: 1.4; }
   font-weight: 600;
 }
 
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.card-detail {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid #000;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+  text-decoration: none;
+  transition: background-color var(--duration), color var(--duration);
+}
+
+.card-detail:hover {
+  background: #000;
+  color: #fff;
+}
+
 .card-project .meta,
 .card-project .result {
   margin: 0;
